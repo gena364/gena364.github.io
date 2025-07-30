@@ -1,1 +1,25 @@
-<span style='color: #66ff66;'><b><%date('MMM dd, HH:mm:ss', 'ru_US') %></b></span>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>GPS‑координаты</title>
+  <style>body {font-family: sans-serif; color: white; background: rgba(0,0,0,0.5); padding: 1em;}</style>
+</head>
+<body>
+  <div id="coords">Определение координат…</div>
+  <script>
+    function update() {
+      navigator.geolocation.getCurrentPosition(p => {
+        const { latitude, longitude, accuracy } = p.coords;
+        document.getElementById('coords').textContent =
+          `Широта: ${latitude.toFixed(6)}\nДолгота: ${longitude.toFixed(6)}\nТочность: ${Math.round(accuracy)} м`;
+      }, e => {
+        document.getElementById('coords').textContent = 'Ошибка: ' + e.message;
+      });
+    }
+    update();
+    setInterval(update, 10000);
+  </script>
+</body>
+</html>
+
