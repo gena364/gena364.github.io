@@ -1,25 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <title>GPS‑координаты</title>
-  <style>body {font-family: sans-serif; color: white; background: rgba(0,0,0,0.5); padding: 1em;}</style>
+	<style>
+    p {
+      margin: 0; /* сбрасываем отступы по умолчанию у тега <p> */
+      font-size: 2em; /* 2em  30 px*/
+
+    }
+  </style>
 </head>
 <body>
-  <div id="coords">Определение координат…</div>
-  <script>
-    function update() {
-      navigator.geolocation.getCurrentPosition(p => {
-        const { latitude, longitude, accuracy } = p.coords;
-        document.getElementById('coords').textContent =
-          `Широта: ${latitude.toFixed(6)}\nДолгота: ${longitude.toFixed(6)}\nТочность: ${Math.round(accuracy)} м`;
-      }, e => {
-        document.getElementById('coords').textContent = 'Ошибка: ' + e.message;
-      });
-    }
-    update();
-    setInterval(update, 10000);
-  </script>
+		<!-- почему то эта строка опускается вниз , чтоб поднять надо top:-20-->
+	<!-- <p style="color:green;font-weight: bold;position:fixed;right:5px;top:0px;margin-top:0">5 sept, 12:34  15&deg;c</p>    -->
+	<!-- <p style="color:green; font-weight: bold; position:absolute;left:0;bottom:0;margin-bottom:0">Москва улица Таганская 34</p>    -->
+	<!-- margin-top:0 можно добавить в кажд строку тогда отступы = 0, а можно и в стайл-->
+	<p style="color:green;font-weight: bold;position:fixed;right:5px;top:0px;">5 сен, 12:34  15&deg;c</p> 
+	<!-- font-size: 2em;  30px -->
+	<p style="color:green;font-weight: bold; position:absolute;left:0;bottom:0;">Москва улица Таганская 34</p>   <!--Текст в левом нижнем --> 
 </body>
-</html>
-
+</html> 
+<!-- Отступы сверху и снизу — это встроенные margin у тега <p>.
+Добавь margin: 0;, и всё будет работать как нужно. -->
